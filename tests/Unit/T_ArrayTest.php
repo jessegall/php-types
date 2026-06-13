@@ -42,10 +42,10 @@ class T_ArrayTest extends TestCase
         $this->assertFalse(T_Array::isNotEmpty([]));
     }
 
-    public function test_matrix_constant_and_factory_are_empty(): void
+    public function test_matrix_is_a_nested_array_with_one_empty_inner_array(): void
     {
-        $this->assertSame([], T_Array::MATRIX);
-        $this->assertSame([], T_Array::matrix());
+        $this->assertSame([[]], T_Array::MATRIX);
+        $this->assertSame([[]], T_Array::matrix());
     }
 
     public function test_class_is_final(): void

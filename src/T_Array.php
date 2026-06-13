@@ -18,13 +18,13 @@ final class T_Array
     public const EMPTY = [];
 
     /**
-     * An empty two-dimensional (nested) array — a matrix. The value is the
-     * same empty array; the type says each element is itself an array, so a
-     * `$grid = T_Array::MATRIX` initializer is correctly typed for analysis.
+     * A two-dimensional (nested) array seeded with one empty inner array —
+     * the `[[]]` literal, e.g. a stack of frames started with a single empty
+     * frame. Distinct from EMPTY (`[]`): this already holds one inner array.
      *
-     * @var array<array-key, array<array-key, mixed>>
+     * @var array<int, array<array-key, mixed>>
      */
-    public const MATRIX = [];
+    public const MATRIX = [[]];
 
     /**
      * The empty array, as a value.
@@ -37,9 +37,10 @@ final class T_Array
     }
 
     /**
-     * An empty two-dimensional (nested) array, as a value.
+     * A two-dimensional (nested) array seeded with one empty inner array, as
+     * a value — the `[[]]` literal.
      *
-     * @return array<array-key, array<array-key, mixed>>
+     * @return array<int, array<array-key, mixed>>
      */
     public static function matrix(): array
     {

@@ -1,0 +1,5 @@
+providers:
+    - JesseGall\PhpTypes\PhpTypesServiceProvider
+
+workbench:
+    start: '/'

@@ -34,11 +34,9 @@ class T_IntTest extends TestCase
         $this->assertFalse(T_Int::isNotZero(0));
     }
 
-    public function test_class_is_final_and_cannot_be_instantiated(): void
+    public function test_class_is_final(): void
     {
-        $reflection = new ReflectionClass(T_Int::class);
-        $this->assertTrue($reflection->isFinal());
-        $this->assertTrue($reflection->getConstructor()->isPrivate());
+        $this->assertTrue((new ReflectionClass(T_Int::class))->isFinal());
     }
 
 }

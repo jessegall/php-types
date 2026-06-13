@@ -34,11 +34,9 @@ class T_FloatTest extends TestCase
         $this->assertFalse(T_Float::isNotZero(0.0));
     }
 
-    public function test_class_is_final_and_cannot_be_instantiated(): void
+    public function test_class_is_final(): void
     {
-        $reflection = new ReflectionClass(T_Float::class);
-        $this->assertTrue($reflection->isFinal());
-        $this->assertTrue($reflection->getConstructor()->isPrivate());
+        $this->assertTrue((new ReflectionClass(T_Float::class))->isFinal());
     }
 
 }

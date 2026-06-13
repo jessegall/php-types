@@ -30,11 +30,9 @@ class T_NullTest extends TestCase
         $this->assertFalse(T_Null::isNotNull(null));
     }
 
-    public function test_class_is_final_and_cannot_be_instantiated(): void
+    public function test_class_is_final(): void
     {
-        $reflection = new ReflectionClass(T_Null::class);
-        $this->assertTrue($reflection->isFinal());
-        $this->assertTrue($reflection->getConstructor()->isPrivate());
+        $this->assertTrue((new ReflectionClass(T_Null::class))->isFinal());
     }
 
 }

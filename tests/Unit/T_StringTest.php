@@ -52,9 +52,4 @@ class T_StringTest extends TestCase
         $this->assertTrue((new ReflectionClass(T_String::class))->isFinal());
     }
 
-    public function test_class_cannot_be_instantiated(): void
-    {
-        $this->assertTrue((new ReflectionClass(T_String::class))->getConstructor()->isPrivate());
-    }
-
 }

@@ -10,8 +10,6 @@ namespace JesseGall\PhpTypes;
 final class T_Null
 {
 
-    private function __construct() {}
-
     /**
      * Whether the value is null.
      */

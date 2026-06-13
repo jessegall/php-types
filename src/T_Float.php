@@ -15,8 +15,6 @@ final class T_Float
      */
     public const ZERO = 0.0;
 
-    private function __construct() {}
-
     /**
      * The float zero, as a value.
      */

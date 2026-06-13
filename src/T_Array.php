@@ -17,8 +17,6 @@ final class T_Array
      */
     public const EMPTY = [];
 
-    private function __construct() {}
-
     /**
      * The empty array, as a value.
      *

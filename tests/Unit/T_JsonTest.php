@@ -23,18 +23,19 @@ class T_JsonTest extends TestCase
         $this->assertSame('[]', T_Json::emptyArray());
     }
 
-    public function test_is_empty_object_is_true_for_the_exact_literal(): void
+    public function test_is_empty_object_is_true_for_the_literal(): void
     {
         $this->assertTrue(T_Json::isEmptyObject('{}'));
     }
 
-    public function test_is_empty_object_is_false_for_whitespace_variants(): void
+    public function test_is_empty_object_is_true_for_whitespace_variants(): void
     {
-        $this->assertFalse(T_Json::isEmptyObject('{ }'));
-        $this->assertFalse(T_Json::isEmptyObject("{}\n"));
+        $this->assertTrue(T_Json::isEmptyObject('{ }'));
+        $this->assertTrue(T_Json::isEmptyObject("{\n}"));
+        $this->assertTrue(T_Json::isEmptyObject('  {}  '));
     }
 
-    public function test_is_empty_object_is_false_for_the_empty_array_literal(): void
+    public function test_is_empty_object_is_false_for_the_empty_array(): void
     {
         $this->assertFalse(T_Json::isEmptyObject('[]'));
     }
@@ -44,23 +45,30 @@ class T_JsonTest extends TestCase
         $this->assertFalse(T_Json::isEmptyObject('{"a":1}'));
     }
 
-    public function test_is_empty_array_is_true_for_the_exact_literal(): void
+    public function test_is_empty_object_is_false_for_invalid_json(): void
+    {
+        $this->assertFalse(T_Json::isEmptyObject('not json'));
+        $this->assertFalse(T_Json::isEmptyObject(''));
+        $this->assertFalse(T_Json::isEmptyObject('null'));
+    }
+
+    public function test_is_empty_array_is_true_for_the_literal_and_whitespace(): void
     {
         $this->assertTrue(T_Json::isEmptyArray('[]'));
+        $this->assertTrue(T_Json::isEmptyArray('[ ]'));
+        $this->assertTrue(T_Json::isEmptyArray("[\n]"));
     }
 
-    public function test_is_empty_array_is_false_for_whitespace_and_other_literals(): void
+    public function test_is_empty_array_is_false_for_other_json(): void
     {
-        $this->assertFalse(T_Json::isEmptyArray('[ ]'));
         $this->assertFalse(T_Json::isEmptyArray('{}'));
         $this->assertFalse(T_Json::isEmptyArray('[1]'));
+        $this->assertFalse(T_Json::isEmptyArray('not json'));
     }
 
-    public function test_class_is_final_and_cannot_be_instantiated(): void
+    public function test_class_is_final(): void
     {
-        $reflection = new ReflectionClass(T_Json::class);
-        $this->assertTrue($reflection->isFinal());
-        $this->assertTrue($reflection->getConstructor()->isPrivate());
+        $this->assertTrue((new ReflectionClass(T_Json::class))->isFinal());
     }
 
 }

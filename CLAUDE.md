@@ -22,12 +22,13 @@ auto-discovery and Testbench have a target.
   errors under strict types, which is correct).
 - **Allman braces**: opening `{` on its own line.
 - One blank line after the class opening brace.
-- Classes are `final` with a `private function __construct() {}` — they are
-  static-only and must never be instantiated.
+- Classes are `final` and hold only static members (no constructor).
 - 4-space indentation.
-- `T_Json` and `T_Float` predicates are **exact comparisons** (no whitespace
-  tolerance, no epsilon) — keep them that way and keep the caveat in the
-  docblock. This is literal replacement, not fuzzy matching.
+- `T_Float` predicates are **exact comparisons** (no epsilon) — keep them that
+  way and keep the caveat in the docblock.
+- `T_Json::isEmptyObject` / `isEmptyArray` are **semantic** — they `json_decode`
+  and inspect the result, so whitespace variants like `'{ }'` count as empty.
+  Keep them decode-based, not textual.
 
 ## Quick commands
 

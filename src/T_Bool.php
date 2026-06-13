@@ -20,8 +20,6 @@ final class T_Bool
      */
     public const FALSE = false;
 
-    private function __construct() {}
-
     /**
      * Whether the value is true.
      */

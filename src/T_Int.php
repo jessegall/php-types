@@ -15,8 +15,6 @@ final class T_Int
      */
     public const ZERO = 0;
 
-    private function __construct() {}
-
     /**
      * The integer zero, as a value.
      */

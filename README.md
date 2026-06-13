@@ -28,8 +28,9 @@ $nonEmpty = array_filter($parts, T_String::isNotEmpty(...));
 | `T_Bool` | `TRUE`, `FALSE` | — | `isTrue()`, `isFalse()` |
 | `T_Null` | — | — | `isNull()`, `isNotNull()` |
 
-`T_Json` predicates compare exactly: `isEmptyObject('{ }')` is `false`. It's
-literal replacement, not a structural JSON check.
+`T_Json` predicates are semantic — `isEmptyObject('{ }')` and `isEmptyObject("{\n}")`
+are `true` (they decode to an empty object), while `isEmptyObject('[]')` and
+invalid JSON are `false`.
 
 ## Install
 

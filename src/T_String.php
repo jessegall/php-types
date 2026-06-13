@@ -15,8 +15,6 @@ final class T_String
      */
     public const EMPTY = '';
 
-    private function __construct() {}
-
     /**
      * The empty string, as a value.
      */

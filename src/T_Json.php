@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JesseGall\PhpTypes;
 
+use stdClass;
+
 /**
  * Named home for the empty JSON literals — `'{}'` and `'[]'`.
  */
@@ -19,8 +21,6 @@ final class T_Json
      * The empty JSON array literal.
      */
     public const EMPTY_ARRAY = '[]';
-
-    private function __construct() {}
 
     /**
      * The empty JSON object literal, as a value.
@@ -39,23 +39,27 @@ final class T_Json
     }
 
     /**
-     * Whether the string is exactly the empty JSON object literal.
+     * Whether the string decodes to an empty JSON object.
      *
-     * Exact comparison — `'{ }'` and `"{}\n"` are NOT considered empty.
+     * Semantic, not textual — `'{}'`, `'{ }'`, and `"{\n}"` are all empty
+     * objects. Non-objects (`'[]'`) and invalid JSON are not.
      */
     public static function isEmptyObject(string $json): bool
     {
-        return $json === self::EMPTY_OBJECT;
+        $decoded = json_decode($json);
+
+        return $decoded instanceof stdClass && (array) $decoded === [];
     }
 
     /**
-     * Whether the string is exactly the empty JSON array literal.
+     * Whether the string decodes to an empty JSON array.
      *
-     * Exact comparison — `'[ ]'` and `"[]\n"` are NOT considered empty.
+     * Semantic, not textual — `'[]'`, `'[ ]'`, and `"[\n]"` are all empty
+     * arrays. Non-arrays (`'{}'`) and invalid JSON are not.
      */
     public static function isEmptyArray(string $json): bool
     {
-        return $json === self::EMPTY_ARRAY;
+        return json_decode($json) === [];
     }
 
 }

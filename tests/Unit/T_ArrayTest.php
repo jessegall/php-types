@@ -47,9 +47,4 @@ class T_ArrayTest extends TestCase
         $this->assertTrue((new ReflectionClass(T_Array::class))->isFinal());
     }
 
-    public function test_class_cannot_be_instantiated(): void
-    {
-        $this->assertTrue((new ReflectionClass(T_Array::class))->getConstructor()->isPrivate());
-    }
-
 }

@@ -20,7 +20,7 @@ $nonEmpty = array_filter($parts, T_String::isNotEmpty(...));
 
 | Class | Constant(s) | Factory | Predicates |
 |---|---|---|---|
-| `T_String` | `EMPTY` | `empty()` | `isEmpty()`, `isNotEmpty()` |
+| `T_String` | `EMPTY`, `SPACE` | `empty()` | `isEmpty()`, `isNotEmpty()`, `isBlank()`, `isNotBlank()` |
 | `T_Array` | `EMPTY` | `empty()` | `isEmpty()`, `isNotEmpty()` |
 | `T_Json` | `EMPTY_OBJECT`, `EMPTY_ARRAY` | `emptyObject()`, `emptyArray()` | `isEmptyObject()`, `isEmptyArray()` |
 | `T_Int` | `ZERO` | `zero()` | `isZero()`, `isNotZero()` |

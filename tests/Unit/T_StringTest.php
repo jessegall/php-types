@@ -47,6 +47,31 @@ class T_StringTest extends TestCase
         $this->assertFalse(T_String::isNotEmpty(''));
     }
 
+    public function test_space_constant_is_a_single_space(): void
+    {
+        $this->assertSame(' ', T_String::SPACE);
+    }
+
+    public function test_is_blank_is_true_for_empty_and_whitespace(): void
+    {
+        $this->assertTrue(T_String::isBlank(''));
+        $this->assertTrue(T_String::isBlank(' '));
+        $this->assertTrue(T_String::isBlank("\t\n  "));
+    }
+
+    public function test_is_blank_is_false_for_any_visible_character(): void
+    {
+        $this->assertFalse(T_String::isBlank('a'));
+        $this->assertFalse(T_String::isBlank('  x  '));
+        $this->assertFalse(T_String::isBlank('0'));
+    }
+
+    public function test_is_not_blank_is_the_inverse(): void
+    {
+        $this->assertTrue(T_String::isNotBlank('a'));
+        $this->assertFalse(T_String::isNotBlank('   '));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_String::class))->isFinal());

@@ -13,7 +13,11 @@ final class T_Array
     /**
      * The empty array.
      *
-     * @var array<never, never>
+     * Typed as the empty-array shape `array{}` so it is a drop-in for a bare
+     * `[]`: assignable to both `list<T>` and `array<K, V>`, exactly like the
+     * literal. (`array<never, never>` would not satisfy a `list<T>` contract.)
+     *
+     * @var array{}
      */
     public const EMPTY = [];
 
@@ -22,14 +26,17 @@ final class T_Array
      * the `[[]]` literal, e.g. a stack of frames started with a single empty
      * frame. Distinct from EMPTY (`[]`): this already holds one inner array.
      *
-     * @var array<int, array<array-key, mixed>>
+     * Typed as the `array{array{}}` shape so it stays assignable to both
+     * `list<array<K, V>>` and `array<int, array<K, V>>`.
+     *
+     * @var array{array{}}
      */
     public const MATRIX = [[]];
 
     /**
      * The empty array, as a value.
      *
-     * @return array<never, never>
+     * @return array{}
      */
     public static function empty(): array
     {
@@ -40,7 +47,7 @@ final class T_Array
      * A two-dimensional (nested) array seeded with one empty inner array, as
      * a value — the `[[]]` literal.
      *
-     * @return array<int, array<array-key, mixed>>
+     * @return array{array{}}
      */
     public static function matrix(): array
     {

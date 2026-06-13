@@ -28,6 +28,8 @@ final class T_Float
      *
      * Exact comparison against `0.0` — this is literal replacement, not an
      * epsilon tolerance check.
+     *
+     * @phpstan-assert-if-true 0.0 $value
      */
     public static function isZero(float $value): bool
     {

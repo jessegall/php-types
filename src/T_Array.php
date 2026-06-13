@@ -58,6 +58,8 @@ final class T_Array
      * Whether the array holds no elements.
      *
      * @param  array<array-key, mixed>  $value
+     *
+     * @phpstan-assert-if-false non-empty-array $value
      */
     public static function isEmpty(array $value): bool
     {
@@ -68,6 +70,8 @@ final class T_Array
      * Whether the array holds any elements.
      *
      * @param  array<array-key, mixed>  $value
+     *
+     * @phpstan-assert-if-true non-empty-array $value
      */
     public static function isNotEmpty(array $value): bool
     {

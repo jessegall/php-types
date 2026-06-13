@@ -25,6 +25,9 @@ final class T_Int
 
     /**
      * Whether the integer is zero.
+     *
+     * @phpstan-assert-if-true 0 $value
+     * @phpstan-assert-if-false int<min, -1>|int<1, max> $value
      */
     public static function isZero(int $value): bool
     {
@@ -33,6 +36,9 @@ final class T_Int
 
     /**
      * Whether the integer is anything but zero.
+     *
+     * @phpstan-assert-if-true int<min, -1>|int<1, max> $value
+     * @phpstan-assert-if-false 0 $value
      */
     public static function isNotZero(int $value): bool
     {

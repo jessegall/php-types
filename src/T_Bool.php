@@ -22,6 +22,9 @@ final class T_Bool
 
     /**
      * Whether the value is true.
+     *
+     * @phpstan-assert-if-true true $value
+     * @phpstan-assert-if-false false $value
      */
     public static function isTrue(bool $value): bool
     {
@@ -30,6 +33,9 @@ final class T_Bool
 
     /**
      * Whether the value is false.
+     *
+     * @phpstan-assert-if-true false $value
+     * @phpstan-assert-if-false true $value
      */
     public static function isFalse(bool $value): bool
     {

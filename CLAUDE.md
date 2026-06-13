@@ -29,6 +29,11 @@ auto-discovery and Testbench have a target.
 - `T_Json::isEmptyObject` / `isEmptyArray` are **semantic** — they `json_decode`
   and inspect the result, so whitespace variants like `'{ }'` count as empty.
   Keep them decode-based, not textual.
+- The predicates carry `@phpstan-assert-if-true` / `-if-false` tags so PHPStan
+  narrows through them (`isNotEmpty($s)` → `non-empty-string`, `isNull($x)` →
+  `null`, etc.). **Keep these in sync with the method's logic** when editing —
+  they are the whole reason a predicate reads better than a raw `=== ''` without
+  losing type-narrowing.
 
 ## Quick commands
 

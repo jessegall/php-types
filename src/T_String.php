@@ -30,6 +30,9 @@ final class T_String
 
     /**
      * Whether the string is empty.
+     *
+     * @phpstan-assert-if-true '' $value
+     * @phpstan-assert-if-false non-empty-string $value
      */
     public static function isEmpty(string $value): bool
     {
@@ -38,6 +41,9 @@ final class T_String
 
     /**
      * Whether the string holds any characters.
+     *
+     * @phpstan-assert-if-true non-empty-string $value
+     * @phpstan-assert-if-false '' $value
      */
     public static function isNotEmpty(string $value): bool
     {
@@ -49,6 +55,8 @@ final class T_String
      *
      * This is the named home for the `trim($x) === ''` idiom — the decision
      * that whitespace counts as empty lives here, in the open.
+     *
+     * @phpstan-assert-if-false non-empty-string $value
      */
     public static function isBlank(string $value): bool
     {
@@ -57,6 +65,8 @@ final class T_String
 
     /**
      * Whether the string holds at least one non-whitespace character.
+     *
+     * @phpstan-assert-if-true non-empty-string $value
      */
     public static function isNotBlank(string $value): bool
     {

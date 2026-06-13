@@ -12,6 +12,9 @@ final class T_Null
 
     /**
      * Whether the value is null.
+     *
+     * @phpstan-assert-if-true null $value
+     * @phpstan-assert-if-false !null $value
      */
     public static function isNull(mixed $value): bool
     {
@@ -20,6 +23,9 @@ final class T_Null
 
     /**
      * Whether the value is anything but null.
+     *
+     * @phpstan-assert-if-true !null $value
+     * @phpstan-assert-if-false null $value
      */
     public static function isNotNull(mixed $value): bool
     {

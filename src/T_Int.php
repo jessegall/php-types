@@ -16,6 +16,16 @@ final class T_Int
     public const ZERO = 0;
 
     /**
+     * The integer one.
+     */
+    public const ONE = 1;
+
+    /**
+     * Negative one — the usual "not found" / comparator sentinel.
+     */
+    public const MINUS_ONE = -1;
+
+    /**
      * The integer zero, as a value.
      */
     public static function zero(): int

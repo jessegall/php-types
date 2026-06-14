@@ -52,6 +52,25 @@ class T_StringTest extends TestCase
         $this->assertSame(' ', T_String::SPACE);
     }
 
+    public function test_whitespace_and_control_constants(): void
+    {
+        $this->assertSame("\n", T_String::NEWLINE);
+        $this->assertSame("\n\n", T_String::PARAGRAPH);
+        $this->assertSame("\r", T_String::CARRIAGE_RETURN);
+        $this->assertSame("\r\n", T_String::CRLF);
+        $this->assertSame("\t", T_String::TAB);
+        $this->assertSame("\0", T_String::NULL_BYTE);
+    }
+
+    public function test_separator_constants(): void
+    {
+        $this->assertSame(',', T_String::COMMA);
+        $this->assertSame(', ', T_String::COMMA_SPACE);
+        $this->assertSame('/', T_String::SLASH);
+        $this->assertSame('.', T_String::DOT);
+        $this->assertSame('-', T_String::DASH);
+    }
+
     public function test_is_blank_is_true_for_empty_and_whitespace(): void
     {
         $this->assertTrue(T_String::isBlank(''));

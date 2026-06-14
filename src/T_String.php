@@ -20,6 +20,65 @@ final class T_String
      */
     public const SPACE = ' ';
 
+    // ── Invisible whitespace / control characters ──────────────────────
+
+    /**
+     * A line feed — `"\n"`.
+     */
+    public const NEWLINE = "\n";
+
+    /**
+     * A blank line / paragraph break — `"\n\n"`.
+     */
+    public const PARAGRAPH = "\n\n";
+
+    /**
+     * A carriage return — `"\r"`.
+     */
+    public const CARRIAGE_RETURN = "\r";
+
+    /**
+     * A Windows line ending — `"\r\n"`.
+     */
+    public const CRLF = "\r\n";
+
+    /**
+     * A horizontal tab — `"\t"`.
+     */
+    public const TAB = "\t";
+
+    /**
+     * A NUL byte — `"\0"`.
+     */
+    public const NULL_BYTE = "\0";
+
+    // ── Common visible separators ──────────────────────────────────────
+
+    /**
+     * A comma — `','`.
+     */
+    public const COMMA = ',';
+
+    /**
+     * A comma followed by a space — `', '`, the usual list join.
+     */
+    public const COMMA_SPACE = ', ';
+
+    /**
+     * A forward slash — `'/'`.
+     */
+    public const SLASH = '/';
+
+    /**
+     * A dot — `'.'`.
+     */
+    public const DOT = '.';
+
+    /**
+     * A dash / hyphen — `'-'`.
+     */
+    public const DASH = '-';
+
     /**
      * The empty string, as a value.
      */

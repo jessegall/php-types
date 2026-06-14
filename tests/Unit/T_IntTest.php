@@ -17,6 +17,12 @@ class T_IntTest extends TestCase
         $this->assertSame(0, T_Int::zero());
     }
 
+    public function test_one_and_minus_one_constants(): void
+    {
+        $this->assertSame(1, T_Int::ONE);
+        $this->assertSame(-1, T_Int::MINUS_ONE);
+    }
+
     public function test_is_zero_is_true_for_zero(): void
     {
         $this->assertTrue(T_Int::isZero(0));

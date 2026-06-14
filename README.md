@@ -20,10 +20,10 @@ $nonEmpty = array_filter($parts, T_String::isNotEmpty(...));
 
 | Class | Constant(s) | Factory | Predicates |
 |---|---|---|---|
-| `T_String` | `EMPTY`, `SPACE` | `empty()` | `isEmpty()`, `isNotEmpty()`, `isBlank()`, `isNotBlank()` |
+| `T_String` | `EMPTY`, `SPACE`, `NEWLINE`, `PARAGRAPH`, `CARRIAGE_RETURN`, `CRLF`, `TAB`, `NULL_BYTE`, `COMMA`, `COMMA_SPACE`, `SLASH`, `DOT`, `DASH` | `empty()` | `isEmpty()`, `isNotEmpty()`, `isBlank()`, `isNotBlank()` |
 | `T_Array` | `EMPTY`, `MATRIX` | `empty()`, `matrix()` | `isEmpty()`, `isNotEmpty()` |
 | `T_Json` | `EMPTY_OBJECT`, `EMPTY_ARRAY` | `emptyObject()`, `emptyArray()` | `isEmptyObject()`, `isEmptyArray()` |
-| `T_Int` | `ZERO` | `zero()` | `isZero()`, `isNotZero()` |
+| `T_Int` | `ZERO`, `ONE`, `MINUS_ONE` | `zero()` | `isZero()`, `isNotZero()` |
 | `T_Float` | `ZERO` | `zero()` | `isZero()`, `isNotZero()` |
 | `T_Bool` | `TRUE`, `FALSE` | — | `isTrue()`, `isFalse()` |
 | `T_Null` | — | — | `isNull()`, `isNotNull()` |

@@ -90,14 +90,13 @@ final class T_String
     }
 
     /**
-     * The value as a string, or the empty string when null — the named home
-     * for `(string) ($x ?? '')`.
-     *
-     * @phpstan-return ($value is null ? '' : string)
+     * The value as a string, or the given default when null — the named home
+     * for `(string) ($x ?? '')` and `(string) ($x ?? $fallback)`. The default
+     * is the empty string, so `coalesce($x)` reads `(string) ($x ?? '')`.
      */
-    public static function coalesce(mixed $value): string
+    public static function coalesce(mixed $value, string $default = self::EMPTY): string
     {
-        return (string) ($value ?? self::EMPTY);
+        return (string) ($value ?? $default);
     }
 
     /**

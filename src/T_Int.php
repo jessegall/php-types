@@ -36,14 +36,13 @@ final class T_Int
     }
 
     /**
-     * The value as an int, or zero when null — the named home for
-     * `(int) ($x ?? 0)`.
-     *
-     * @phpstan-return ($value is null ? 0 : int)
+     * The value as an int, or the given default when null — the named home for
+     * `(int) ($x ?? 0)` and `(int) ($x ?? $fallback)`. Defaults to zero, so
+     * `coalesce($x)` reads `(int) ($x ?? 0)`.
      */
-    public static function coalesce(mixed $value): int
+    public static function coalesce(mixed $value, int $default = self::ZERO): int
     {
-        return (int) ($value ?? self::ZERO);
+        return (int) ($value ?? $default);
     }
 
     /**

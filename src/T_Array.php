@@ -44,16 +44,18 @@ final class T_Array
     }
 
     /**
-     * The value, or the empty array when null — the named home for
-     * `$x ?? []`. Unlike the scalar coalesces this does NOT cast (a `(array)`
-     * cast would wrap a non-array value); pass an array or null.
+     * The value, or the given default when null — the named home for `$x ?? []`
+     * and `$x ?? $fallback`. Unlike the scalar coalesces this does NOT cast (a
+     * `(array)` cast would wrap a non-array value); pass an array or null. The
+     * default is the empty array, so `coalesce($x)` reads `$x ?? []`.
      *
      * @param  array<mixed>|null  $value
-     * @phpstan-return ($value is null ? array{} : array<mixed>)
+     * @param  array<mixed>  $default
+     * @phpstan-return array<mixed>
      */
-    public static function coalesce(?array $value): array
+    public static function coalesce(?array $value, array $default = self::EMPTY): array
     {
-        return $value ?? self::EMPTY;
+        return $value ?? $default;
     }
 
     /**

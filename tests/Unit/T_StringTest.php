@@ -91,6 +91,19 @@ class T_StringTest extends TestCase
         $this->assertFalse(T_String::isNotBlank('   '));
     }
 
+    public function test_coalesce_returns_value_or_empty_default(): void
+    {
+        $this->assertSame('x', T_String::coalesce('x'));
+        $this->assertSame('', T_String::coalesce(null));
+    }
+
+    public function test_coalesce_uses_given_default_when_null(): void
+    {
+        $this->assertSame(',', T_String::coalesce(null, T_String::COMMA));
+        $this->assertSame('x', T_String::coalesce('x', T_String::COMMA));
+        $this->assertSame('fallback', T_String::coalesce(null, 'fallback'));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_String::class))->isFinal());

@@ -26,14 +26,13 @@ final class T_Float
     }
 
     /**
-     * The value as a float, or zero when null — the named home for
-     * `(float) ($x ?? 0.0)`.
-     *
-     * @phpstan-return ($value is null ? 0.0 : float)
+     * The value as a float, or the given default when null — the named home for
+     * `(float) ($x ?? 0.0)` and `(float) ($x ?? $fallback)`. Defaults to zero,
+     * so `coalesce($x)` reads `(float) ($x ?? 0.0)`.
      */
-    public static function coalesce(mixed $value): float
+    public static function coalesce(mixed $value, float $default = self::ZERO): float
     {
-        return (float) ($value ?? self::ZERO);
+        return (float) ($value ?? $default);
     }
 
     /**

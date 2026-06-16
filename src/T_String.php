@@ -81,10 +81,23 @@ final class T_String
 
     /**
      * The empty string, as a value.
+     *
+     * @phpstan-return ''
      */
     public static function empty(): string
     {
         return self::EMPTY;
+    }
+
+    /**
+     * The value as a string, or the empty string when null — the named home
+     * for `(string) ($x ?? '')`.
+     *
+     * @phpstan-return ($value is null ? '' : string)
+     */
+    public static function coalesce(mixed $value): string
+    {
+        return (string) ($value ?? self::EMPTY);
     }
 
     /**

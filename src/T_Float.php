@@ -17,10 +17,23 @@ final class T_Float
 
     /**
      * The float zero, as a value.
+     *
+     * @phpstan-return 0.0
      */
     public static function zero(): float
     {
         return self::ZERO;
+    }
+
+    /**
+     * The value as a float, or zero when null — the named home for
+     * `(float) ($x ?? 0.0)`.
+     *
+     * @phpstan-return ($value is null ? 0.0 : float)
+     */
+    public static function coalesce(mixed $value): float
+    {
+        return (float) ($value ?? self::ZERO);
     }
 
     /**

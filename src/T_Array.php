@@ -44,6 +44,19 @@ final class T_Array
     }
 
     /**
+     * The value, or the empty array when null — the named home for
+     * `$x ?? []`. Unlike the scalar coalesces this does NOT cast (a `(array)`
+     * cast would wrap a non-array value); pass an array or null.
+     *
+     * @param  array<mixed>|null  $value
+     * @phpstan-return ($value is null ? array{} : array<mixed>)
+     */
+    public static function coalesce(?array $value): array
+    {
+        return $value ?? self::EMPTY;
+    }
+
+    /**
      * A two-dimensional (nested) array seeded with one empty inner array, as
      * a value — the `[[]]` literal.
      *

@@ -21,6 +21,17 @@ final class T_Bool
     public const FALSE = false;
 
     /**
+     * The value as a bool, or false when null — the named home for
+     * `(bool) ($x ?? false)`.
+     *
+     * @phpstan-return ($value is null ? false : bool)
+     */
+    public static function coalesce(mixed $value): bool
+    {
+        return (bool) ($value ?? self::FALSE);
+    }
+
+    /**
      * Whether the value is true.
      *
      * @phpstan-assert-if-true true $value

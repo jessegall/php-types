@@ -27,10 +27,23 @@ final class T_Int
 
     /**
      * The integer zero, as a value.
+     *
+     * @phpstan-return 0
      */
     public static function zero(): int
     {
         return self::ZERO;
+    }
+
+    /**
+     * The value as an int, or zero when null — the named home for
+     * `(int) ($x ?? 0)`.
+     *
+     * @phpstan-return ($value is null ? 0 : int)
+     */
+    public static function coalesce(mixed $value): int
+    {
+        return (int) ($value ?? self::ZERO);
     }
 
     /**

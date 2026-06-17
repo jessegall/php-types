@@ -70,6 +70,24 @@ final class T_Array
     }
 
     /**
+     * Start a fluent {@see ArrayBuilder} seeded with the always-present keys —
+     * the named home for assembling an array whose shape is partly conditional,
+     * instead of spreading ternaries with empty-array arms or indexing a bag:
+     *
+     *     T_Array::from(['name' => $x])
+     *         ->putUnlessNull('label', $label)
+     *         ->putUnlessEmpty('options', $options)
+     *         ->toArray();
+     *
+     * @param  array<array-key, mixed>  $items
+     * @return ArrayBuilder<array-key, mixed>
+     */
+    public static function from(array $items = self::EMPTY): ArrayBuilder
+    {
+        return ArrayBuilder::from($items);
+    }
+
+    /**
      * Whether the array holds no elements.
      *
      * @param  array<array-key, mixed>  $value

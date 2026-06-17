@@ -28,6 +28,22 @@ $nonEmpty = array_filter($parts, T_String::isNotEmpty(...));
 | `T_Bool` | `TRUE`, `FALSE` | — | `isTrue()`, `isFalse()` |
 | `T_Null` | — | — | `isNull()`, `isNotNull()` |
 
+## Deferred defaults
+
+`Defaults` returns a zero-argument `Closure` that produces a type's default —
+for when a place wants a *callable* yielding the default rather than the value:
+
+```php
+$make = Defaults::array();   // Closure(): array{}
+$make();                     // []
+
+// e.g. a resolver factory or a lazy fallback:
+IsNull::make()->then(Defaults::array());
+```
+
+`Defaults::array()`, `string()`, `int()`, `float()`, `bool()` (`false`), `null()`.
+For the value directly, use the type's own accessor (`T_Array::empty()`, …).
+
 `T_Json` predicates are semantic — `isEmptyObject('{ }')` and `isEmptyObject("{\n}")`
 are `true` (they decode to an empty object), while `isEmptyObject('[]')` and
 invalid JSON are `false`.

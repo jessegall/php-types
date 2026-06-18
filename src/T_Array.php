@@ -59,6 +59,24 @@ final class T_Array
     }
 
     /**
+     * The array at `$array[$key]`, or the given default when that key is absent
+     * or null — the named home for `$array[$key] ?? []`. Use this for a dynamic
+     * dictionary lookup instead of double-coalescing `coalesce($array[$key] ??
+     * null)` (the inner `?? null` defeats the point of `coalesce`). The default
+     * is the empty array, so `coalesceFor($array, $key)` reads `$array[$key] ??
+     * []`.
+     *
+     * @param  array<array-key, array<mixed>|null>  $array
+     * @param  array-key  $key
+     * @param  array<mixed>  $default
+     * @phpstan-return array<mixed>
+     */
+    public static function coalesceFor(array $array, int|string $key, array $default = self::EMPTY): array
+    {
+        return $array[$key] ?? $default;
+    }
+
+    /**
      * A two-dimensional (nested) array seeded with one empty inner array, as
      * a value — the `[[]]` literal.
      *

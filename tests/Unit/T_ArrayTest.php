@@ -48,6 +48,26 @@ class T_ArrayTest extends TestCase
         $this->assertSame([[]], T_Array::matrix());
     }
 
+    public function test_coalesce_for_returns_the_value_at_the_key(): void
+    {
+        $this->assertSame(['a', 'b'], T_Array::coalesceFor(['x' => ['a', 'b']], 'x'));
+    }
+
+    public function test_coalesce_for_returns_the_empty_default_when_key_is_absent(): void
+    {
+        $this->assertSame([], T_Array::coalesceFor(['x' => ['a']], 'missing'));
+    }
+
+    public function test_coalesce_for_returns_the_empty_default_when_value_is_null(): void
+    {
+        $this->assertSame([], T_Array::coalesceFor(['x' => null], 'x'));
+    }
+
+    public function test_coalesce_for_uses_the_given_default(): void
+    {
+        $this->assertSame(['fallback'], T_Array::coalesceFor([], 'x', ['fallback']));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_Array::class))->isFinal());

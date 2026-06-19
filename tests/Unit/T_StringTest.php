@@ -104,6 +104,24 @@ class T_StringTest extends TestCase
         $this->assertSame('fallback', T_String::coalesce(null, 'fallback'));
     }
 
+    public function test_coerce_guards_the_type_and_never_blind_casts(): void
+    {
+        $this->assertSame('abc', T_String::coerce('abc'));
+        $this->assertSame('42', T_String::coerce(42));
+        $this->assertSame('d', T_String::coerce([], 'd'));      // never "Array"
+        $this->assertSame('d', T_String::coerce(null, 'd'));
+        $this->assertSame('d', T_String::coerce('', 'd'));      // empty -> default
+        $this->assertSame('d', T_String::coerce(new \stdClass, 'd'));
+    }
+
+    public function test_coerce_or_null(): void
+    {
+        $this->assertSame('abc', T_String::coerceOrNull('abc'));
+        $this->assertNull(T_String::coerceOrNull([]));
+        $this->assertNull(T_String::coerceOrNull(''));
+        $this->assertNull(T_String::coerceOrNull(null));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_String::class))->isFinal());

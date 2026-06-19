@@ -40,6 +40,17 @@ class T_IntTest extends TestCase
         $this->assertFalse(T_Int::isNotZero(0));
     }
 
+    public function test_coerce_guards_numeric_and_never_masks_garbage(): void
+    {
+        $this->assertSame(42, T_Int::coerce('42'));
+        $this->assertSame(42, T_Int::coerce(42));
+        $this->assertSame(9, T_Int::coerce('abc', 9));   // never 0
+        $this->assertSame(9, T_Int::coerce([], 9));
+        $this->assertSame(9, T_Int::coerce(null, 9));
+        $this->assertNull(T_Int::coerceOrNull('abc'));
+        $this->assertSame(7, T_Int::coerceOrNull('7'));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_Int::class))->isFinal());

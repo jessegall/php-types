@@ -34,6 +34,15 @@ class T_FloatTest extends TestCase
         $this->assertFalse(T_Float::isNotZero(0.0));
     }
 
+    public function test_coerce_guards_numeric(): void
+    {
+        $this->assertSame(3.5, T_Float::coerce('3.5'));
+        $this->assertSame(1.0, T_Float::coerce(1));
+        $this->assertSame(9.0, T_Float::coerce('abc', 9.0));
+        $this->assertNull(T_Float::coerceOrNull('x'));
+        $this->assertSame(2.5, T_Float::coerceOrNull('2.5'));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_Float::class))->isFinal());

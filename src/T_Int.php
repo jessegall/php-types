@@ -46,6 +46,25 @@ final class T_Int
     }
 
     /**
+     * Validated coercion over an UNTYPED source: use the value only when it is
+     * genuinely numeric, else the default. Unlike {@see self::coalesce()} (which
+     * blind-casts — `coalesce("abc")` is `0`), this GUARDS the type and never
+     * masks non-numeric input.
+     */
+    public static function coerce(mixed $value, int $default = self::ZERO): int
+    {
+        return is_numeric($value) ? (int) $value : $default;
+    }
+
+    /**
+     * As {@see self::coerce()}, but null when the value is not numeric.
+     */
+    public static function coerceOrNull(mixed $value): int|null
+    {
+        return is_numeric($value) ? (int) $value : null;
+    }
+
+    /**
      * Whether the integer is zero.
      *
      * @phpstan-assert-if-true 0 $value

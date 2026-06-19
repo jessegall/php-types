@@ -36,6 +36,24 @@ final class T_Float
     }
 
     /**
+     * Validated coercion over an UNTYPED source: use the value only when it is
+     * genuinely numeric, else the default. Unlike {@see self::coalesce()} (which
+     * blind-casts), this GUARDS the type and never masks non-numeric input.
+     */
+    public static function coerce(mixed $value, float $default = self::ZERO): float
+    {
+        return is_numeric($value) ? (float) $value : $default;
+    }
+
+    /**
+     * As {@see self::coerce()}, but null when the value is not numeric.
+     */
+    public static function coerceOrNull(mixed $value): float|null
+    {
+        return is_numeric($value) ? (float) $value : null;
+    }
+
+    /**
      * Whether the float is exactly zero.
      *
      * Exact comparison against `0.0` — this is literal replacement, not an

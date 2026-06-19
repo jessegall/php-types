@@ -100,6 +100,26 @@ final class T_String
     }
 
     /**
+     * Validated coercion over an UNTYPED source (config, request bags, metadata):
+     * use the value only when it is genuinely a non-empty scalar string, else the
+     * default. Unlike {@see self::coalesce()} (which blind-casts — `coalesce([])`
+     * is `"Array"`), this never casts an array/object; it GUARDS the type.
+     */
+    public static function coerce(mixed $value, string $default = self::EMPTY): string
+    {
+        return is_scalar($value) && ($s = (string) $value) !== self::EMPTY ? $s : $default;
+    }
+
+    /**
+     * As {@see self::coerce()}, but null (not a default) when the value is not a
+     * non-empty scalar string.
+     */
+    public static function coerceOrNull(mixed $value): string|null
+    {
+        return is_scalar($value) && ($s = (string) $value) !== self::EMPTY ? $s : null;
+    }
+
+    /**
      * Whether the string is empty.
      *
      * @phpstan-assert-if-true '' $value

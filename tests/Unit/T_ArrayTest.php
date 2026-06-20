@@ -68,6 +68,31 @@ class T_ArrayTest extends TestCase
         $this->assertSame(['fallback'], T_Array::coalesceFor([], 'x', ['fallback']));
     }
 
+    public function test_to_list_reindexes_a_keyed_array_to_a_list(): void
+    {
+        $this->assertSame(['a', 'b'], T_Array::toList(['x' => 'a', 'y' => 'b']));
+    }
+
+    public function test_to_list_discards_keys_from_a_sparse_array(): void
+    {
+        $this->assertSame([10, 20], T_Array::toList([5 => 10, 2 => 20]));
+    }
+
+    public function test_to_list_materialises_an_iterable_dropping_duplicate_keys(): void
+    {
+        $generator = (static function () {
+            yield 'k' => 'a';
+            yield 'k' => 'b';
+        })();
+
+        $this->assertSame(['a', 'b'], T_Array::toList($generator));
+    }
+
+    public function test_to_list_of_empty_is_empty(): void
+    {
+        $this->assertSame([], T_Array::toList([]));
+    }
+
     public function test_class_is_final(): void
     {
         $this->assertTrue((new ReflectionClass(T_Array::class))->isFinal());

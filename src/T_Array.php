@@ -106,6 +106,30 @@ final class T_Array
     }
 
     /**
+     * Re-key an array or iterable to a sequential `list<T>` — the named home for
+     * `array_values(...)`, and the clean terminal for a collection chain whose
+     * `@return` is a `list<T>`.
+     *
+     * Larastan types `collect($x)->map(...)->values()->all()` as `array<int, T>`
+     * (NOT `list<T>`), which trips a `list<T>` return contract — and
+     * `array_values(...)` is the only spelling PHPStan special-cases back to
+     * `list<T>`. `T_Array::toList(collect($x)->map(...))` carries that special-case
+     * with a name, so the chain reads without a procedural `array_values(...)`
+     * wrapped around it. Accepts any iterable (array, Generator, Laravel
+     * Collection, …); keys are discarded.
+     *
+     * @template T
+     *
+     * @param  iterable<T>  $items
+     *
+     * @return list<T>
+     */
+    public static function toList(iterable $items): array
+    {
+        return array_values(is_array($items) ? $items : iterator_to_array($items, false));
+    }
+
+    /**
      * Whether the array holds no elements.
      *
      * @param  array<array-key, mixed>  $value

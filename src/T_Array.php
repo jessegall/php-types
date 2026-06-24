@@ -134,7 +134,7 @@ final class T_Array
      *
      * @param  array<array-key, mixed>  $value
      *
-     * @phpstan-assert-if-false non-empty-array $value
+     * @phpstan-assert-if-false non-empty-array<array-key, mixed> $value
      */
     public static function isEmpty(array $value): bool
     {
@@ -146,7 +146,7 @@ final class T_Array
      *
      * @param  array<array-key, mixed>  $value
      *
-     * @phpstan-assert-if-true non-empty-array $value
+     * @phpstan-assert-if-true non-empty-array<array-key, mixed> $value
      */
     public static function isNotEmpty(array $value): bool
     {

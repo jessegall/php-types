@@ -13,7 +13,7 @@ use Traversable;
  * empty case is part of the type: you reach the value only through a method that
  * confronts absence. Immutable — every transform returns a new Option.
  *
- * @template T
+ * @template-covariant T
  *
  * @implements IteratorAggregate<int, T>
  */
@@ -274,8 +274,10 @@ final class Option implements IteratorAggregate
     /**
      * This Option if `some`, else $optb.
      *
-     * @param  self<T>  $optb
-     * @return self<T>
+     * @template TOther
+     *
+     * @param  self<TOther>  $optb
+     * @return self<T>|self<TOther>
      */
     public function or(self $optb): self
     {
@@ -285,8 +287,10 @@ final class Option implements IteratorAggregate
     /**
      * This Option if `some`, else the callback's Option (lazy).
      *
-     * @param  callable(): self<T>  $fn
-     * @return self<T>
+     * @template TOther
+     *
+     * @param  callable(): self<TOther>  $fn
+     * @return self<T>|self<TOther>
      */
     public function orElse(callable $fn): self
     {
@@ -296,8 +300,10 @@ final class Option implements IteratorAggregate
     /**
      * Exactly one of the two, or `none` if both or neither are `some`.
      *
-     * @param  self<T>  $optb
-     * @return self<T>
+     * @template TOther
+     *
+     * @param  self<TOther>  $optb
+     * @return self<T>|self<TOther>
      */
     public function xor(self $optb): self
     {

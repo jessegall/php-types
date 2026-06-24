@@ -189,6 +189,18 @@ class OptionTest extends TestCase
         $this->assertSame(2, Option::none()->orElse(fn () => Option::some(2))->unwrap());
     }
 
+    public function test_or_falls_back_to_a_differently_typed_option(): void
+    {
+        // arrange
+        $present = Option::some('kept');
+        $empty = Option::none();
+
+        // act / assert — the alternative may carry a different T (covariant union)
+        $this->assertSame('kept', $present->or(Option::some(42))->unwrap());
+        $this->assertSame(42, $empty->or(Option::some(42))->unwrap());
+        $this->assertSame(42, $empty->orElse(fn () => Option::some(42))->unwrap());
+    }
+
     public function test_xor(): void
     {
         $this->assertSame(1, Option::some(1)->xor(Option::none())->unwrap());

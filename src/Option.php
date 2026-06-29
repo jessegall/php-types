@@ -66,6 +66,20 @@ final class Option implements IteratorAggregate
         return $value === null ? self::none() : self::some($value);
     }
 
+    /**
+     * A falsy value (`null`, `false`, `0`, `0.0`, `''`, `'0'`, `[]`) becomes `none`, anything
+     * truthy `some` — collapses the "absent or blank" guard into one call.
+     *
+     * @template TValue
+     *
+     * @param  TValue  $value
+     * @return self<TValue>
+     */
+    public static function fromTruthy(mixed $value): self
+    {
+        return $value ? self::some($value) : self::none();
+    }
+
     // ── Querying ────────────────────────────────────────────────────────
 
     /**

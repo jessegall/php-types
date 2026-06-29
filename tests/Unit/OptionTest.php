@@ -43,6 +43,18 @@ class OptionTest extends TestCase
         $this->assertSame('x', Option::fromNullable('x')->unwrap());
     }
 
+    public function test_from_truthy_maps_falsy_to_none(): void
+    {
+        $this->assertTrue(Option::fromTruthy(null)->isNone());
+        $this->assertTrue(Option::fromTruthy('')->isNone(), 'a blank string is absent');
+        $this->assertTrue(Option::fromTruthy('0')->isNone(), "'0' is falsy in PHP");
+        $this->assertTrue(Option::fromTruthy(0)->isNone(), 'unlike fromNullable, 0 is absent');
+        $this->assertTrue(Option::fromTruthy([])->isNone());
+        $this->assertTrue(Option::fromTruthy(false)->isNone());
+        $this->assertSame('x', Option::fromTruthy('x')->unwrap());
+        $this->assertSame([1], Option::fromTruthy([1])->unwrap());
+    }
+
     public function test_is_some_and(): void
     {
         $this->assertTrue(Option::some(4)->isSomeAnd(fn (int $n) => $n % 2 === 0));

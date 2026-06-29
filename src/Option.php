@@ -68,11 +68,12 @@ final class Option implements IteratorAggregate
 
     /**
      * A falsy value (`null`, `false`, `0`, `0.0`, `''`, `'0'`, `[]`) becomes `none`, anything
-     * truthy `some` — collapses the "absent or blank" guard into one call.
+     * truthy `some` — collapses the "absent or blank" guard into one call. Like `fromNullable`,
+     * the result type strips `null`, so a `?T` in yields a clean `Option<T>`.
      *
      * @template TValue
      *
-     * @param  TValue  $value
+     * @param  TValue|null  $value
      * @return self<TValue>
      */
     public static function fromTruthy(mixed $value): self
